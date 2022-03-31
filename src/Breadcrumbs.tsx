@@ -7,14 +7,6 @@ import { get } from './redux/projectSlice';
 export function Breadcrumbs() {
 
     let {project, status} = useAppSelector((state) => state.project);
-    let dispatch = useDispatch();
-    let { repo } = useParams();
-
-    useEffect(() => {
-        console.log("boom")
-        if (repo)
-            dispatch(get(repo))
-    }, [repo])
 
     if (project == null) {
         return <div>Loading...</div>

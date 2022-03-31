@@ -21,17 +21,7 @@ const range = (from: number, to: number): number[] => {
 
 export function RepoFiles() {
 
-    const dispatch = useDispatch()
     const { dirs, status } = useAppSelector((state) => state.dir)
-    const { project } = useAppSelector((state) => state.project)
-    const { dir } = useParams()
-
-    useEffect(() => {
-        console.log(dir)
-        if (project) {
-            dispatch(get([project.name, dir ?? "/"]))
-        }
-    }, [project, dir])
 
     const table = (() => {
         if (status == "loading") {

@@ -1,16 +1,33 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { useParams } from 'react-router-dom'
 import { Breadcrumbs } from './Breadcrumbs'
 import { useAppSelector } from './hooks/redux'
 import { LangsBar } from './LangsBar'
 import { LastCommit } from './LastCommit'
 import { Readme } from './Readme'
-import { selectProject } from './redux/projectSlice'
+import * as dirs from './redux/dirSlice'
+import * as project from './redux/projectSlice'
 import { RepoActions } from './RepoActions'
 import { RepoFiles } from './RepoFiles'
 import { RepoMetadata } from './RepoMetadata'
 import { RepoShortcuts } from './RepoShortcuts'
 
 export function ProjectPage () {
+
+    const dispatch = useDispatch();
+    const { repo, dir } = useParams();
+
+    useEffect(() => {
+        if (repo)
+            dispatch(project.get(repo))
+    }, [repo])
+
+    useEffect(() => {
+        if (project && repo) {
+            dispatch(dirs.get([repo, dir ?? "/"]))
+        }
+    }, [repo, dir])
 
 
     return (
