@@ -37,7 +37,7 @@ function App() {
             <Route path="/:owner/:repo" element={<RepoPage />} />
             <Route path="/:owner/:repo/timeline" element={<TimelinePage />} />
             <Route path="/:owner/:repo/dir/:branch" element={<DirPage />} />
-            <Route path="/:owner/:repo/dir/:branch/:path" element={<DirPage />} />
+            <Route path="/:owner/:repo/dir/:branch/*" element={<DirPage />} />
             <Route path="/:owner/:repo/issues" element={<IssuesPage />} />
             <Route path="/:owner/:repo/issues/:id" element={<IssuePage />} />
             <Route path="/:owner/:repo/pulls" element={<PullsPage />} />

@@ -17,10 +17,10 @@ const mockRepo = (name: string): Repo => {
     },
     content: "My super project",
     thread: [],
-    tags: new Set([]),
+    tags: [],
     timestamp: new Date(),
-    stargazers: new Set([]),
-    branches: new Set([]),
+    stargazers: [],
+    branches: [{name: "trunk"}, {name: "experiment"}],
     forkedFrom: null
   }
 }
@@ -60,7 +60,7 @@ const mockDirs = (): Dir[] => _.shuffle([
   }
 ])
 
-export function fetchDir(repo: string, dir: string = "/") {
+export function fetchDir(repo: string, branch: string, path: string) {
   return new Promise<{ data: Dir[] }>((resolve) =>
     setTimeout(() => resolve({ data: mockDirs() }), mockDelay)
   );

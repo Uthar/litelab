@@ -4,13 +4,13 @@ export type Post = {
     content: string;
     timestamp: Date;
     thread: Post[];
-    tags: Set<Tag>
+    tags: Tag[]
 }
 
 export type Repo = Post & {
     name: string;
-    stargazers: Set<User>;
-    branches: Set<Branch>;
+    stargazers: User[];
+    branches: Branch[];
     forkedFrom: Repo | null;
 }
 

@@ -15,8 +15,8 @@ const initialState: DirState = {
 
 export const get = createAsyncThunk(
   'project/dir',
-  async ([repo, dir]: string[]) => {
-    const response = await fetchDir(repo, dir);
+  async ([repo, branch, path]: string[]) => {
+    const response = await fetchDir(repo, branch, path);
     return response.data;
   }
 );

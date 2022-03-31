@@ -35,6 +35,7 @@ export function RepoPage () {
             <Breadcrumbs/>
             <RepoMetadata/>
             <LangsBar/>
+            
             <RepoActions/>
             <LastCommit
               image="https://galkowski.xyz/openjdk.jpg"
