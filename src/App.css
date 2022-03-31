@@ -159,6 +159,23 @@ table.repo-files {
   text-align: right;
 }
 
+.repo-files .file-name {
+  cursor: pointer;
+}
+
+.repo-files .file-name:hover {
+  text-decoration: underline #000;
+}
+
+.repo-files .commit-hash > a {
+  text-decoration: none;
+  color: #666;
+}
+
+.repo-files .commit-hash > a:hover {
+  text-decoration: underline;
+}
+
 .breadcrumbs {
   padding: .8rem 0;
   border-bottom: 1px solid #dbdbdb;

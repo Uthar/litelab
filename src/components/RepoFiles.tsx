@@ -1,7 +1,7 @@
 import moment from 'moment';
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useAppSelector } from '../hooks/redux';
 import { get } from '../redux/dirSlice';
 import { fetchDir } from '../rest/litelabAPI';
@@ -22,6 +22,8 @@ const range = (from: number, to: number): number[] => {
 export function RepoFiles() {
 
     const { dirs, status } = useAppSelector((state) => state.dir)
+    const { owner = "", repo = "" } = useParams()
+    const navigate = useNavigate()
 
     const table = (() => {
         if (status == "loading") {
@@ -33,15 +35,33 @@ export function RepoFiles() {
                 </tr>
             )
         } else {
-            return dirs.map(({ name, commit }) => (
-                <tr key={name}>
-                    <td>{name}</td>
-                    <td>{commit.content}</td>
-                    <td className="last-update">{
-                        moment(commit.timestamp.toISOString()).fromNow()
-                    }</td>
-                </tr>
-            ))
+            return dirs.map(({ name, commit }) => {
+                const isoDate = commit.timestamp.toISOString();
+                return (
+                    <tr key={name}>
+                        <td
+                            className="file-name"
+                            title={name}
+                            onClick={(e) => navigate(name)}
+                        >
+                            {name}
+                        </td>
+                        <td className="commit-hash">
+                            <Link
+                                title={commit.content}
+                                to={`/${owner}/${repo}/commit/${commit.hash}`}
+                            >
+                                {commit.content}
+                            </Link>
+                        </td>
+                        <td className="last-update">
+                            <span title={isoDate}>
+                                {moment(isoDate).fromNow()}
+                            </span>
+                        </td>
+                    </tr>
+                )
+            })
         }
     })()
 
