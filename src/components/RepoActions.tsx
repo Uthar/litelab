@@ -30,7 +30,7 @@ export function RepoActions() {
                 </select>
 
                 <div className="repo-path">
-                    {`${apply(partial(concatStringsSep, "/"), path.pathname.split("/").slice(5))}`}
+                    {`repo${apply(partial(concatStringsSep, "/"), path.pathname.split("/").slice(5))}`}
                 </div>
 
             </div>
