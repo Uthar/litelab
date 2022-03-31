@@ -1,39 +1,335 @@
-.App {
-  text-align: center;
+@import 'https://necolas.github.io/normalize.css/8.0.1/normalize.css';
+
+:root {
+  --bar-color: #292961;
+  --nav-color: #f0f0f0;
+  --site-color: #303030;
+  --site-bg-color: #fff;
+  --bar-height: 2.5rem;
+  --nav-icon-size: 17px;
+
+  /* stolen from GitLab */
+  --blue: #007bff;
+  --indigo: #6610f2;
+  --purple: #6d49cb;
+  --pink: #e83e8c;
+  --red: #dc3545;
+  --orange: #fd7e14;
+  --yellow: #ffc107;
+  --green: #28a745;
+  --teal: #20c997;
+  --cyan: #17a2b8;
+  --white: #fff;
+  --gray: #5e5e5e;
+  --gray-dark: #404040;
+  --primary: #007bff;
+  --secondary: #f0f0f0;
+  --success: #108548;
+  --info: #1f75cb;
+  --warning: #ab6100;
+  --danger: #dd2b0e;
+  --light: #dbdbdb;
+  --dark: #404040;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+ color: var(--site-color);
+ background-color: var(--site-bg-color);
+ font-size: 0.875rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-float infinite 3s ease-in-out;
-  }
-}
-
-.App-header {
+.container {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  align-items: stretch;
+}
+
+.app {
+  display: flex;
+  flex-direction: row;
+}
+
+.nav {
+  width: 220px;
+  position: fixed;
+  height: 100%;
+  top: var(--bar-height);
+  background-color: var(--nav-color);
+}
+
+.nav-items {
+  list-style-type: none;
+  padding-inline-start: 0;
+  margin-block-end: 0;
+  margin-block-start: 0;
+  padding: 0.2rem;
+}
+
+.nav-items > a {
+  text-decoration: none;
+  color:inherit;
+}
+
+.nav-item {
+  list-style-type: none;
+  padding: .7rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 1rem;
+  user-select: none;
+}
+
+.nav-item > *:first-child {
+  margin-right: 0.4rem;
+  width: var(--nav-icon-size);
+}
+
+.nav-item:hover, .nav-items > a:first-of-type > li:first-of-type {
+  background-color: #dbdbdb;
+  border-radius: 2px;
+}
+
+#site {
+  width: 100%;
+  padding:.6rem;
+  margin-top: var(--bar-height);
+  margin-left: 15%;
+}
+
+#site > * {
+  margin: .6rem;
+  max-width: 990px;
+  margin: 0 auto;
+}
+
+.repo-files-container {
+  margin: 0;
+  overflow: auto;
+  border: 1px solid #dbdbdb;
+  border-radius: 4px;
+}
+
+table.repo-files {
+  border-radius: 4px;
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.repo-files > thead {
+  font-weight: bold ;
+  text-align: left;
+}
+
+.repo-files > tbody {
+  text-align: left;
+}
+
+.repo-files tr th {
+  background-color: #f0f0f0;
+  line-height: 21px;
+  border: 0;
+  padding: 10px 16px;
+}
+
+.repo-files tr td {
+  line-height: 21px;
+  padding: 10px 16px;
+  border-color: #dbdbdb;
+}
+
+.repo-files td {
+  border-top: 1px solid #f0f0f0;
+}
+
+.repo-files tr:hover td {
+  border-bottom: 1px solid rgba(0, 111, 255, 0.4);
+  border-top: 1px solid rgba(0, 111, 255, 0.4);
+  background-color: rgba(0, 111, 255, 0.05);
+}
+
+.repo-files tr:last-of-type:hover td {
+  border-bottom: 0;
+}
+
+.repo-files .last-update {
+  text-align: right;
+}
+
+.breadcrumbs {
+  padding: .8rem 0;
+  border-bottom: 1px solid #dbdbdb;
+  font-size: 0.756rem;
+}
+
+.repo-meta {
+  padding: .8rem 0;
+}
+
+.repo-meta-title {
+  padding: .4rem 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.project-name {
+  font-size: 1.15rem;
+  font-weight: bold;
+}
+
+.repo-meta-stats {
+  padding: .4rem 0;
+}
+
+.repo-meta-description {
+  padding: .4rem 0;
+}
+
+.langs-bar {
+  padding: .4rem 0;
+
+}
+
+.langs-bar > div {
+  height: 8px;
+  background-color: #3fb68b;
+  border-radius: 6px;
+}
+
+.repo-actions {
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.branch-chooser {
+  margin-right: 1rem;
+}
+
+.last-commit {
+  border: 1px solid #dbdbdb;
+  border-radius: 5px;
+  background-color: #fafafa;
+  padding: .9rem 0;
+  max-height: 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.last-commit img {
+  max-width: 50px;
+  max-height: 50px;
+  margin-right: .5rem;
+  margin-left: 1rem;
+}
+
+.last-commit button {
+  margin-right: 1rem;
+}
+
+.committer {
+  display: flex;
+}
+
+.commit {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.repo-shortcuts {
+  padding: 1rem 0;
+  display: flex;
+}
+
+.flexy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: fixed;
+  width: 100%;
+  height: var(--bar-height);
+  background-color: var(--bar-color);
+  color: var(--light);
+  font-weight: bold;
+  font-size: .8rem;
+}
+
+.bar-button {
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 0 .5rem;
+  border-radius: 4px;
+  height: 80%;
+  margin-right: .8rem;
 }
 
-.App-link {
-  color: rgb(112, 76, 182);
+/* The logo */
+.bar .flexy:first-of-type .bar-button:first-of-type {
+  padding: 0;
+  margin-left: .5rem;
 }
 
-@keyframes App-logo-float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+.bar-button:hover {
+  background-color: rgba(255,255,255,0.17);
+  color: #fff;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+#logo {
+  height: 100%;
+}
+
+#search {
+    border-radius: 3px;
+    border: 1px solid #868686; 
+    appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    -moz-appearance: none;
+    background: rgba(255, 255, 255, 0.2);
+    width: 288px;
+    padding: 7px 10px;
+    transition: 0.3s;
+    outline: none;
+    box-shadow: inset 0 0 0 1px rgb(209 209 240 / 40%);
+    line-height: 1rem;
+    transition: border-color ease-in-out 0.15s, background-color ease-in-out 0.15s;
+    font-size: 0.875rem;
+    background-clip: padding-box;
+    margin-right: .5rem;
+}
+
+#search:focus {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: #333;
+    outline: 4px solid rgba(100, 170, 250, 0.4);
+}
+
+#search:focus::placeholder {
+    color: #666;
+}
+
+#search::placeholder {
+    color: rgba(209,209,240,0.8);
+    font-size: .9rem;
+    font-family: sans-serif;
+    transition: 0.3s;
 }
