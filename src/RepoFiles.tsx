@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { useAppSelector } from './hooks/redux';
 import { get } from './redux/dirSlice';
 import { fetchDir } from './rest/litelabAPI';
+import * as _ from 'lodash'
 
 const range = (from: number, to: number): number[] => {
     let lp = (acc: number[], n: number): number[] => {
@@ -26,10 +27,33 @@ export function RepoFiles() {
     const { dir } = useParams()
 
     useEffect(() => {
+        console.log(dir)
         if (project) {
             dispatch(get([project.name, dir ?? "/"]))
         }
     }, [project, dir])
+
+    const table = (() => {
+        if (status == "loading") {
+            return range(1, 5).map(n =>
+                <tr key={`file-${n}`}>
+                    <td>...</td>
+                    <td>...</td>
+                    <td className="last-update">...</td>
+                </tr>
+            )
+        } else {
+            return dirs.map(({ name, commit }) => (
+                <tr key={name}>
+                    <td>{name}</td>
+                    <td>{commit.content}</td>
+                    <td className="last-update">{
+                        moment(commit.timestamp.toISOString()).fromNow()
+                    }</td>
+                </tr>
+            ))
+        }
+    })()
 
     return (
         <div className="repo-files-container">
@@ -42,15 +66,7 @@ export function RepoFiles() {
                     </tr>
                 </thead>
                 <tbody>
-                    {dirs.map(({ name, commit }) => (
-                        <tr key={name}>
-                            <td>{name}</td>
-                            <td>{commit.content}</td>
-                            <td className="last-update">{
-                                moment(commit.timestamp.toISOString()).fromNow()
-                            }</td>
-                        </tr>
-                    ))}
+                    {table}
                 </tbody>
             </table>
         </div>
