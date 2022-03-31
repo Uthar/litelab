@@ -17,18 +17,19 @@ export function DirPage () {
 
     const dispatch = useDispatch();
     const { owner, repo, branch } = useParams();
-    const path = useLocation();
+    const location = useLocation();
+    const path = location.pathname.split("/").slice(5).join("/")
 
     useEffect(() => {
         if (repo)
             dispatch(project.get(repo))
-    }, [repo])
+    }, [owner, repo])
 
     useEffect(() => {
         if (project && repo) {
-            dispatch(dirs.get([repo, branch ?? "trunk", path.pathname ?? "/"]))
+            dispatch(dirs.get([`${owner}/${repo}`, branch ?? "trunk", path ?? "/"]))
         }
-    }, [repo])
+    }, [owner, repo, branch])
 
 
     return (
