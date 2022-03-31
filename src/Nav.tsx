@@ -8,7 +8,7 @@ export function Nav() {
     return (
         <nav className="nav">
             <ul className="nav-items">
-                <Link to="/">
+                <Link to="/fooz">
                     <li className="nav-item">
                         <img src="https://galkowski.xyz/openjdk.jpg" />
                         <span>Project name</span>

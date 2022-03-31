@@ -23,7 +23,7 @@ function App() {
         <div className="app">
           <Nav />
           <Routes>
-            <Route path="/" element={<ProjectPage />} />
+            <Route path="/:repo" element={<ProjectPage />} />
           </Routes>
         </div>
       </BrowserRouter>

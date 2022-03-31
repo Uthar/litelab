@@ -1,14 +1,15 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from './store';
 import { fetchProject } from '../rest/litelabAPI';
+import { Repo } from '../vcs/vcs';
 
 export interface ProjectState {
-  project: string;
+  project: Repo | null;
   status: 'idle' | 'loading' | 'failed';
 }
 
 const initialState: ProjectState = {
-  project: "",
+  project: null,
   status: 'idle',
 };
 
@@ -32,7 +33,7 @@ export const projectSlice = createSlice({
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
     // Use the PayloadAction type to declare the contents of `action.payload`
-    set: (state, action: PayloadAction<string>) => {
+    set: (state, action: PayloadAction<Repo>) => {
       state.project = action.payload;
     },
   },
