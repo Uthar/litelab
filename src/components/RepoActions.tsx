@@ -3,16 +3,16 @@ import React from 'react'
 import { useLocation, useMatch, useParams, useResolvedPath } from 'react-router-dom'
 import { useAppSelector } from '../hooks/redux'
 
+export function apply(f: Function, args: any[]) {
+    return f.apply(null, args)
+}
+
 export function concatStringsSep (sep: string, ...strings: string[]) {
     return strings.reduce((a, b) => a + sep + b, "")
 }
 
 export function concatStrings (...strings: string[]) {
-    return concatStringsSep.apply(null, ["", ...strings])
-}
-
-export function apply(f: Function, args: any[]) {
-    return f.apply(null, args)
+    return apply(concatStringsSep, ["", ...strings])
 }
 
 export function RepoActions() {
