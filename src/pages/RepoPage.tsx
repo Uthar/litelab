@@ -19,15 +19,15 @@ export function RepoPage () {
     const { owner, repo } = useParams();
 
     useEffect(() => {
-        if (repo)
-            dispatch(project.get(repo))
-    }, [repo])
+        if (owner && repo)
+            dispatch(project.get(owner+'/'+repo))
+    }, [owner, repo])
 
     useEffect(() => {
-        if (project && repo) {
-            dispatch(dirs.get([repo, "/"]))
+        if (owner && repo) {
+            dispatch(dirs.get([owner+'/'+repo, "/"]))
         }
-    }, [repo])
+    }, [owner, repo])
 
 
     return (
@@ -35,7 +35,7 @@ export function RepoPage () {
             <Breadcrumbs/>
             <RepoMetadata/>
             <LangsBar/>
-            
+
             <RepoActions/>
             <LastCommit
               image="https://galkowski.xyz/openjdk.jpg"

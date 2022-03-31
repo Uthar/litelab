@@ -1,5 +1,4 @@
 import _ from "lodash";
-import { User } from "react-feather";
 import { Dir, Repo } from "../vcs/vcs";
 
 
