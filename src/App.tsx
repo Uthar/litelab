@@ -16,7 +16,6 @@ import { IssuesPage } from './pages/IssuesPage';
 import { ProfilePage } from './pages/ProfilePage';
 import { PRPage } from './pages/PRPage';
 import { PullsPage } from './pages/PullsPage';
-import { RepoPage } from './pages/RepoPage';
 import { SettingsPage } from './pages/SettingsPage';
 import { TimelinePage } from './pages/TimelinePage';
 import { WikiPage } from './pages/WikiPage';
@@ -34,7 +33,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/:owner" element={<ProfilePage />} />
-            <Route path="/:owner/:repo" element={<RepoPage />} />
+            <Route path="/:owner/:repo" element={<DirPage />} />
             <Route path="/:owner/:repo/timeline" element={<TimelinePage />} />
             <Route path="/:owner/:repo/dir/:branch" element={<DirPage />} />
             <Route path="/:owner/:repo/dir/:branch/*" element={<DirPage />} />

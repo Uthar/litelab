@@ -2,7 +2,7 @@
 export type Post = {
     author: User;
     content: string;
-    timestamp: Date;
+    timestamp: string;
     thread: Post[];
     tags: Tag[]
 }
@@ -36,7 +36,7 @@ export type Tag = {
 
 export type Issue = Post & {
     title: string;
-    timestamp: Date;
+    timestamp: string;
     status: IssueStatus;
     assignee: User;
 }

@@ -36,7 +36,7 @@ export function RepoFiles() {
             )
         } else {
             return dirs.map(({ name, commit }) => {
-                const isoDate = commit.timestamp.toISOString();
+                const timestamp = commit.timestamp;
                 return (
                     <tr key={name}>
                         <td
@@ -55,8 +55,8 @@ export function RepoFiles() {
                             </Link>
                         </td>
                         <td className="last-update">
-                            <span title={isoDate}>
-                                {moment(isoDate).fromNow()}
+                            <span title={timestamp}>
+                                {moment(timestamp).fromNow()}
                             </span>
                         </td>
                     </tr>

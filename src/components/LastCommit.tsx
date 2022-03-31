@@ -1,24 +1,32 @@
 import React from 'react'
+import { useParams } from 'react-router-dom';
+import { useAppSelector } from '../hooks/redux';
 
-export type LastCommitProps = {
-    image: string;
-    comment: string;
-    user: string;
-    timestamp: string;
-    hash: string;
-}
+export function LastCommit() {
 
-export function LastCommit(props: LastCommitProps) {
+    const { owner, repo } = useParams()
+    const { commits } = useAppSelector(state => state.commits)
+
+    const lastCommit = commits[0]
+
+    if (!lastCommit) {
+        return (
+            <div>No commits</div>
+        )
+    }
+
+    const user = lastCommit.author
+
     return (
         <div className="last-commit">
             <div className="committer">
-                <img src={props.image}></img>
+                <img src={user.image.toString()}></img>
                 <div className="commit">
-                    <strong>{props.comment}</strong>
-                    <span>{props.user} ({props.timestamp})</span>
+                    <strong>{lastCommit.content}</strong>
+                    <span>{user.name} ({lastCommit.timestamp})</span>
                 </div>
             </div>
-            <button>{props.hash}</button>
+            <button>{lastCommit.hash}</button>
         </div>
     )
 }

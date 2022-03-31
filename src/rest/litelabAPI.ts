@@ -1,23 +1,24 @@
-import _ from "lodash";
-import { Dir, Repo } from "../vcs/vcs";
+import _, { partial, repeat, shuffle, times } from "lodash";
+import { Commit, Dir, Repo, User } from "../vcs/vcs";
 
 
-const mockDelay = 100;
+const mockDelay: number = 100;
+const mockUser: User = {
+  name: "kpg",
+  email: "kpg@karweusz.pl",
+  image: new URL("https://galkowski.xyz/openjdk.jpg")
+}
 
 ////// Repo
 
 const mockRepo = (name: string): Repo => {
   return {
     name,
-    author: {
-      name: "kpg",
-      email: "kpg@karweusz.pl",
-      image: new URL("https://galkowski.xyz/openjdk.jpg")
-    },
+    author: mockUser,
     content: "My super project",
     thread: [],
     tags: [],
-    timestamp: new Date(),
+    timestamp: "1970-01-01T00:00:01",
     stargazers: [],
     branches: [{name: "trunk"}, {name: "experiment"}],
     forkedFrom: null
@@ -37,7 +38,7 @@ const mockDirs = (): Dir[] => _.shuffle([
     name: "README.txt",
     commit: {
       hash: "13801293757019283123",
-      timestamp: new Date(),
+      timestamp: "1970-01-01T00:00:01",
       content: "Changed a thing"
     }
   },
@@ -45,7 +46,7 @@ const mockDirs = (): Dir[] => _.shuffle([
     name: "shell.nix",
     commit: {
       hash: "11231237019283123",
-      timestamp: new Date(),
+      timestamp: "1970-01-01T00:00:01",
       content: "Added shell nix"
     }
   },
@@ -53,7 +54,7 @@ const mockDirs = (): Dir[] => _.shuffle([
     name: "COPYING",
     commit: {
       hash: "2323223233",
-      timestamp: new Date(),
+      timestamp: "1970-01-01T00:00:01",
       content: "added GPLv3"
     }
   }
@@ -62,5 +63,23 @@ const mockDirs = (): Dir[] => _.shuffle([
 export function fetchDir(repo: string, branch: string, path: string) {
   return new Promise<{ data: Dir[] }>((resolve) =>
     setTimeout(() => resolve({ data: mockDirs() }), mockDelay)
+  );
+}
+
+////// Commits
+const mockCommit = (branch: string): Commit => Object.assign({
+  author: mockUser,
+  content: "Some random change",
+  timestamp: "1970-01-01T00:00:01",
+  thread: [],
+  tags: [],
+  branch: { name: branch },
+  hash: shuffle("1234567890abcdef223344556677")
+})
+
+
+export function fetchCommits(repo: string, branch: string, page: number = 1, pageSize: number = 20) {
+  return new Promise<{ data: Commit[] }>((resolve) =>
+    setTimeout(() => resolve({ data: times(pageSize, partial(mockCommit, branch)) }), mockDelay)
   );
 }
