@@ -2,9 +2,9 @@ import moment from 'moment';
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { useAppSelector } from './hooks/redux';
-import { get } from './redux/dirSlice';
-import { fetchDir } from './rest/litelabAPI';
+import { useAppSelector } from '../hooks/redux';
+import { get } from '../redux/dirSlice';
+import { fetchDir } from '../rest/litelabAPI';
 import * as _ from 'lodash'
 
 const range = (from: number, to: number): number[] => {

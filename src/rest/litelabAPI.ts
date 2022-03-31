@@ -1,5 +1,9 @@
+import _ from "lodash";
 import { User } from "react-feather";
 import { Dir, Repo } from "../vcs/vcs";
+
+
+const mockDelay = 100;
 
 ////// Repo
 
@@ -23,13 +27,13 @@ const mockRepo = (name: string): Repo => {
 
 export function fetchProject(name: string) {
   return new Promise<{ data: Repo }>((resolve) =>
-    setTimeout(() => resolve({ data: mockRepo(name) }), 500)
+    setTimeout(() => resolve({ data: mockRepo(name) }), mockDelay)
   );
 }
 
 ////// Dir
 
-const mockDirs = (): Dir[] => [
+const mockDirs = (): Dir[] => _.shuffle([
   {
     name: "README.txt",
     commit: {
@@ -54,10 +58,10 @@ const mockDirs = (): Dir[] => [
       content: "added GPLv3"
     }
   }
-]
+])
 
 export function fetchDir(repo: string, dir: string = "/") {
   return new Promise<{ data: Dir[] }>((resolve) =>
-    setTimeout(() => resolve({ data: mockDirs() }), 500)
+    setTimeout(() => resolve({ data: mockDirs() }), mockDelay)
   );
 }

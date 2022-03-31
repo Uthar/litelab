@@ -1,6 +1,7 @@
 import React, { FC, FunctionComponent, MouseEventHandler } from 'react'
 import { SearchBar } from './SearchBar';
 import * as Icon from 'react-feather'
+import { useNavigate } from 'react-router-dom';
 
 export type BarButtonProps = {
     onClick: MouseEventHandler;
@@ -15,10 +16,13 @@ export type BarProps = {
 }
 
 export function Bar(props: BarProps) {
+
+    const navigate = useNavigate();
+
     return (
         <nav className="bar">
             <div className="flexy">
-                <BarButton onClick={() => { }}>
+                <BarButton onClick={() => { navigate("/") }}>
                     <img id='logo' src={props.logo} alt="logo"></img>
                 </BarButton>
                 <BarButton onClick={() => { }}>

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { useAppSelector } from './hooks/redux';
-import { get } from './redux/projectSlice';
+import { useAppSelector } from '../hooks/redux';
+import { get } from '../redux/projectSlice';
 
 export function Breadcrumbs() {
 

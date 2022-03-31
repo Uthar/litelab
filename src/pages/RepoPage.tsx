@@ -1,22 +1,22 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { Breadcrumbs } from './Breadcrumbs'
-import { useAppSelector } from './hooks/redux'
-import { LangsBar } from './LangsBar'
-import { LastCommit } from './LastCommit'
-import { Readme } from './Readme'
-import * as dirs from './redux/dirSlice'
-import * as project from './redux/projectSlice'
-import { RepoActions } from './RepoActions'
-import { RepoFiles } from './RepoFiles'
-import { RepoMetadata } from './RepoMetadata'
-import { RepoShortcuts } from './RepoShortcuts'
+import { Breadcrumbs } from '../components/Breadcrumbs'
+import { useAppSelector } from '../hooks/redux'
+import { LangsBar } from '../components/LangsBar'
+import { LastCommit } from '../components/LastCommit'
+import { Readme } from '../components/Readme'
+import * as dirs from '../redux/dirSlice'
+import * as project from '../redux/projectSlice'
+import { RepoActions } from '../components/RepoActions'
+import { RepoFiles } from '../components/RepoFiles'
+import { RepoMetadata } from '../components/RepoMetadata'
+import { RepoShortcuts } from '../components/RepoShortcuts'
 
-export function ProjectPage () {
+export function RepoPage () {
 
     const dispatch = useDispatch();
-    const { repo, dir } = useParams();
+    const { owner, repo } = useParams();
 
     useEffect(() => {
         if (repo)
@@ -25,9 +25,9 @@ export function ProjectPage () {
 
     useEffect(() => {
         if (project && repo) {
-            dispatch(dirs.get([repo, dir ?? "/"]))
+            dispatch(dirs.get([repo, "/"]))
         }
-    }, [repo, dir])
+    }, [repo])
 
 
     return (

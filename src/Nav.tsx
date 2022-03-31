@@ -14,55 +14,55 @@ export function Nav() {
                         <span>Project name</span>
                     </li>
                 </Link>
-                <Link to="/timeline">
+                <Link to="timeline">
                     <li className="nav-item">
                         <Icons.GitBranch size={iconSize} />
                         <span>Timeline</span>
                     </li>
                 </Link>
-                <Link to="/code">
+                <Link to="code">
                     <li className="nav-item">
                         <Icons.Code size={iconSize} />
                         <span>Code</span>
                     </li>
                 </Link>
-                <Link to="/issues">
+                <Link to="issues">
                     <li className="nav-item">
                         <Icons.AlertCircle size={iconSize} />
                         <span>Issues</span>
                     </li>
                 </Link>
-                <Link to="/merge_requests">
+                <Link to="merge_requests">
                     <li className="nav-item">
                         <Icons.GitPullRequest size={iconSize} />
                         <span>Merge requests</span>
                     </li>
                 </Link>
-                <Link to="/cicd">
+                <Link to="cicd">
                     <li className="nav-item">
                         <Icons.Repeat size={iconSize} />
                         <span>CI/CD</span>
                     </li>
                 </Link>
-                <Link to="/deployments">
+                <Link to="deployments">
                     <li className="nav-item">
                         <Icons.UploadCloud size={iconSize} />
                         <span>Deployments</span>
                     </li>
                 </Link>
-                <Link to="/packages">
+                <Link to="packages">
                     <li className="nav-item">
                         <Icons.Package size={iconSize} />
                         <span>Packages &amp; Registries</span>
                     </li>
                 </Link>
-                <Link to="/wiki">
+                <Link to="wiki">
                     <li className="nav-item">
                         <Icons.BookOpen size={iconSize} />
                         <span>Wiki</span>
                     </li>
                 </Link>
-                <Link to="/settings">
+                <Link to="settings">
                     <li className="nav-item">
                         <Icons.Settings size={iconSize} />
                         <span>Settings</span>
