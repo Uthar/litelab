@@ -47,3 +47,8 @@ export type MR = Post & {
     from: [Repo,  Branch];
     to: [Repo, Branch];
 }
+
+export type Dir = {
+    name: string,
+    commit: Pick<Commit, "hash" | "timestamp" | "content">
+}

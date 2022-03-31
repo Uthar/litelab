@@ -1,4 +1,10 @@
-import React from 'react'
+import moment from 'moment';
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { useAppSelector } from './hooks/redux';
+import { get } from './redux/dirSlice';
+import { fetchDir } from './rest/litelabAPI';
 
 const range = (from: number, to: number): number[] => {
     let lp = (acc: number[], n: number): number[] => {
@@ -13,6 +19,18 @@ const range = (from: number, to: number): number[] => {
 }
 
 export function RepoFiles() {
+
+    const dispatch = useDispatch()
+    const { dirs, status } = useAppSelector((state) => state.dir)
+    const { project } = useAppSelector((state) => state.project)
+    const { dir } = useParams()
+
+    useEffect(() => {
+        if (project) {
+            dispatch(get([project.name, dir ?? "/"]))
+        }
+    }, [project, dir])
+
     return (
         <div className="repo-files-container">
             <table className="repo-files">
@@ -24,11 +42,13 @@ export function RepoFiles() {
                     </tr>
                 </thead>
                 <tbody>
-                    {range(1, 10).map(x => (
-                        <tr key={x}>
-                            <td>README.md {x}</td>
-                            <td>Add readme</td>
-                            <td className="last-update">{x} days</td>
+                    {dirs.map(({ name, commit }) => (
+                        <tr key={name}>
+                            <td>{name}</td>
+                            <td>{commit.content}</td>
+                            <td className="last-update">{
+                                moment(commit.timestamp.toISOString()).fromNow()
+                            }</td>
                         </tr>
                     ))}
                 </tbody>
