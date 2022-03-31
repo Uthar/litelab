@@ -176,6 +176,14 @@ table.repo-files {
   text-decoration: underline;
 }
 
+.repo-files td.last-update {
+  color: #666;
+}
+
+.repo-files .last-update > *:hover {
+  text-decoration: underline;
+}
+
 .breadcrumbs {
   padding: .8rem 0;
   border-bottom: 1px solid #dbdbdb;
