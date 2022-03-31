@@ -78,7 +78,7 @@ const mockCommit = (branch: string): Commit => Object.assign({
 })
 
 
-export function fetchCommits(repo: string, branch: string, page: number = 1, pageSize: number = 20) {
+export function fetchCommits(repo: string, branch: string, dir: string, page: number = 1, pageSize: number = 20, ) {
   return new Promise<{ data: Commit[] }>((resolve) =>
     setTimeout(() => resolve({ data: times(pageSize, partial(mockCommit, branch)) }), mockDelay)
   );

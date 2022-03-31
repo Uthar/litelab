@@ -20,7 +20,7 @@ export function RepoActions() {
     const { project } = useAppSelector(state => state.project)
     const { owner, repo, branch } = useParams()
     const location = useLocation()
-    const path = location.pathname.split("/").slice(5)
+    const path = location.pathname.split("/").slice(5).join("/")
     const navigate = useNavigate();
 
     const to = (branch: string) => `/${owner}/${repo}/dir/${branch}/${path}`
@@ -43,7 +43,7 @@ export function RepoActions() {
                 </select>
 
                 <div className="repo-path">
-                    {`repo${apply(partial(concatStringsSep, "/"), path)}`}
+                    {`repo/${path}`}
                 </div>
 
             </div>

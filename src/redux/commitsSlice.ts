@@ -16,8 +16,8 @@ const initialState: CommitsState = {
 
 export const get = createAsyncThunk(
   'commits',
-  async ([repo, branch, page, pageSize]: [string, string, number, number]) => {
-    const response = await fetchCommits(repo, branch, page, pageSize);
+  async ([repo, branch, dir, page, pageSize]: [string, string, string, number, number]) => {
+    const response = await fetchCommits(repo, branch, dir, page, pageSize);
     return response.data;
   }
 );

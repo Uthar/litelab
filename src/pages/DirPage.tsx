@@ -27,7 +27,7 @@ export function DirPage () {
 
     useEffect(() => {
         dispatch(dirs.get([`${owner}/${repo}`, branch ?? "trunk", path ?? "/"]))
-        dispatch(commits.get([owner, repo, 1, 15]))
+        dispatch(commits.get([owner, repo, path, 1, 15]))
     }, [owner, repo, branch])
 
 
