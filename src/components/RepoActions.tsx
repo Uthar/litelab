@@ -24,26 +24,22 @@ export function RepoActions() {
     const navigate = useNavigate();
 
     const to = (branch: string) => `/${owner}/${repo}/dir/${branch}/${path}`
+    const options = project?.branches.map(b =>
+        <option
+            selected={b.name === branch}>
+            {b.name}
+        </option>
+    )
 
     return (
         <div className="repo-actions">
             <div className='repo-actions-left flexy'>
 
-                <select className="branch-chooser"
-                    onChange={(e) => {
-                        console.log("selected")
-                        navigate(to(e.currentTarget.value))
-                    }}>
-                    {project?.branches.map(b => {
-
-                        return (
-                            <option
-
-                                selected={b.name === branch}>
-                                {b.name}
-                            </option>
-                        )
-                    })}
+                <select
+                    className="branch-chooser"
+                    onChange={e => navigate(to(e.currentTarget.value))}
+                >
+                    {options}
                 </select>
 
                 <div className="repo-path">
