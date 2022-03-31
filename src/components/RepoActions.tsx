@@ -1,6 +1,6 @@
 import _, { partial } from 'lodash'
 import React from 'react'
-import { useLocation, useMatch, useParams, useResolvedPath } from 'react-router-dom'
+import { useLocation, useMatch, useNavigate, useParams, useResolvedPath } from 'react-router-dom'
 import { useAppSelector } from '../hooks/redux'
 
 export function apply(f: Function, args: any[]) {
@@ -18,19 +18,36 @@ export function concatStrings (...strings: string[]) {
 export function RepoActions() {
 
     const { project } = useAppSelector(state => state.project)
-    const { repo, branch } = useParams()
-    const path = useLocation()
+    const { owner, repo, branch } = useParams()
+    const location = useLocation()
+    const path = location.pathname.split("/").slice(5)
+    const navigate = useNavigate();
+
+    const to = (branch: string) => `/${owner}/${repo}/dir/${branch}/${path}`
 
     return (
         <div className="repo-actions">
             <div className='repo-actions-left flexy'>
 
-                <select className="branch-chooser">
-                    {project?.branches.map(b => <option selected={b.name === branch}>{b.name}</option>)}
+                <select className="branch-chooser"
+                    onChange={(e) => {
+                        console.log("selected")
+                        navigate(to(e.currentTarget.value))
+                    }}>
+                    {project?.branches.map(b => {
+
+                        return (
+                            <option
+
+                                selected={b.name === branch}>
+                                {b.name}
+                            </option>
+                        )
+                    })}
                 </select>
 
                 <div className="repo-path">
-                    {`repo${apply(partial(concatStringsSep, "/"), path.pathname.split("/").slice(5))}`}
+                    {`repo${apply(partial(concatStringsSep, "/"), path)}`}
                 </div>
 
             </div>
