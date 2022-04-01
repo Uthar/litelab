@@ -1,11 +1,12 @@
 import moment from 'moment';
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useAppSelector } from '../hooks/redux';
 import { get } from '../redux/dirSlice';
 import { fetchDir } from '../rest/litelabAPI';
 import * as _ from 'lodash'
+import { butlast } from './Breadcrumbs';
 
 const range = (from: number, to: number): number[] => {
     let lp = (acc: number[], n: number): number[] => {
@@ -22,7 +23,13 @@ const range = (from: number, to: number): number[] => {
 export function RepoFiles() {
 
     const { dirs, status } = useAppSelector((state) => state.dir)
-    const { owner = "", repo = "" } = useParams()
+    const { owner = "", repo = "", branch = "trunk" } = useParams()
+    const location = useLocation()
+    const path = location.pathname.split("/").slice(5).join("/")
+    let dirname = butlast(path.split("/")).join("/")
+    if (dirname !== "") {
+      dirname += "/"
+    }
     const navigate = useNavigate()
 
     const table = (() => {
@@ -42,9 +49,11 @@ export function RepoFiles() {
                         <td
                             className="file-name"
                             title={name}
-                            onClick={(e) => navigate(name)}
                         >
-                            {name}
+                            <Link to={`/${owner}/${repo}/dir/${branch}/${dirname}${name}`}>
+                                {name}
+                            </Link>
+
                         </td>
                         <td className="commit-hash">
                             <Link

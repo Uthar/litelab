@@ -161,6 +161,13 @@ table.repo-files {
 
 .repo-files .file-name {
   cursor: pointer;
+  padding: 0;
+}
+
+.repo-files .file-name > a {
+  cursor: pointer;
+  display: block;
+  padding: 10px 16px;
 }
 
 .repo-files .file-name:hover {
