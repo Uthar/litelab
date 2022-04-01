@@ -2,6 +2,8 @@ import _, { partial } from 'lodash'
 import React from 'react'
 import { useLocation, useMatch, useNavigate, useParams, useResolvedPath } from 'react-router-dom'
 import { useAppSelector } from '../hooks/redux'
+import { crumbsFor } from '../pages/DirPage'
+import { Breadcrumbs } from './Breadcrumbs'
 
 export function apply(f: Function, args: any[]) {
     return f.apply(null, args)
@@ -30,6 +32,9 @@ export function RepoActions() {
         </option>
     )
 
+    const crumbs = crumbsFor(path)
+    console.table(crumbs)
+
     return (
         <div className="repo-actions">
             <div className='repo-actions-left flexy'>
@@ -43,7 +48,7 @@ export function RepoActions() {
                 </select>
 
                 <div className="repo-path">
-                    {`repo/${path}`}
+                    <Breadcrumbs elements={crumbs} separator="/"/>
                 </div>
 
             </div>
