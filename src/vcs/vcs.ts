@@ -21,7 +21,7 @@ export type Branch = {
 export type User = {
     name: string;
     email: string;
-    image: URL;
+    image: string;
 }
 
 

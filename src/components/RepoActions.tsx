@@ -18,15 +18,14 @@ export function concatStrings (...strings: string[]) {
 export function RepoActions() {
 
     const { project } = useAppSelector(state => state.project)
-    const { owner, repo, branch } = useParams()
+    const { owner, repo, branch = "trunk" } = useParams()
     const location = useLocation()
     const path = location.pathname.split("/").slice(5).join("/")
     const navigate = useNavigate();
 
     const to = (branch: string) => `/${owner}/${repo}/dir/${branch}/${path}`
     const options = project?.branches.map(b =>
-        <option
-            selected={b.name === branch}>
+        <option key={b.name}>
             {b.name}
         </option>
     )
@@ -38,6 +37,7 @@ export function RepoActions() {
                 <select
                     className="branch-chooser"
                     onChange={e => navigate(to(e.currentTarget.value))}
+                    defaultValue={branch}
                 >
                     {options}
                 </select>

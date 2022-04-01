@@ -35,6 +35,7 @@ function App() {
             <Route path="/:owner" element={<ProfilePage />} />
             <Route path="/:owner/:repo" element={<DirPage />} />
             <Route path="/:owner/:repo/timeline" element={<TimelinePage />} />
+            <Route path="/:owner/:repo/dir" element={<DirPage />} />
             <Route path="/:owner/:repo/dir/:branch" element={<DirPage />} />
             <Route path="/:owner/:repo/dir/:branch/*" element={<DirPage />} />
             <Route path="/:owner/:repo/issues" element={<IssuesPage />} />

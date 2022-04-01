@@ -6,7 +6,7 @@ const mockDelay: number = 100;
 const mockUser: User = {
   name: "kpg",
   email: "kpg@karweusz.pl",
-  image: new URL("https://galkowski.xyz/openjdk.jpg")
+  image: "https://galkowski.xyz/openjdk.jpg"
 }
 
 ////// Repo

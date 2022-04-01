@@ -1,21 +1,43 @@
-import React from 'react'
-import { useParams } from 'react-router-dom';
+import _, { uniqueId } from 'lodash';
+import React, { MouseEventHandler, FC } from 'react'
+import { Link } from 'react-router-dom';
 import { useAppSelector } from '../hooks/redux';
 
-export function Breadcrumbs() {
+export type Breadcrumb = {
+    text: string,
+    href: string
+}
 
-    let {project, status} = useAppSelector((state) => state.project);
+export type BreadcrumbsProps = {
+    elements: Breadcrumb[],
+    separator: string
+}
 
-    if (project == null) {
-        return <div>Loading...</div>
-    }
+export function last <T> (xs: T[]) {
+    return xs[xs.length - 1]
+}
 
-    const name = status == "loading" ? "Loading..." : project.name;
-    const owner = status == "loading" ? "Loading..." : project.author.name;
+export function butlast <T> (xs: T[]) {
+    return xs.slice(0, xs.length - 1)
+}
+
+export function interpose <T> (x: T, xs: T[]): T[] {
+  return [...butlast(xs).reduce((acc: T[], cur) => [...acc, cur, x], []), last(xs)]
+}
+
+export const Breadcrumbs = ({ elements, separator = ">" }: BreadcrumbsProps) => {
+
+
+    const crumbs = elements.filter(el => el.text !== "").map(({ text, href, }) => (
+        <Link key={href} className='breadcrumb' to={href}>{text}</Link>
+    ))
 
     return (
         <div className="breadcrumbs">
-            {owner} &gt; {name}
+            {interpose(
+                <span>{separator}</span>,
+                crumbs
+            )}
         </div>
     )
 }
