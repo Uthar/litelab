@@ -178,10 +178,7 @@ table.repo-files {
 
 .repo-files td.last-update {
   color: #666;
-}
-
-.repo-files .last-update > *:hover {
-  text-decoration: underline;
+  cursor: default;
 }
 
 .breadcrumbs {
