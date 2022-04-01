@@ -167,6 +167,8 @@ table.repo-files {
 .repo-files .file-name > a {
   cursor: pointer;
   display: block;
+  color: inherit;
+  text-decoration: none;
   padding: 10px 16px;
 }
 
