@@ -252,6 +252,15 @@ table.repo-files {
   margin-left: 1rem;
 }
 
+.last-commit a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.last-commit a:hover {
+  text-decoration: underline;
+}
+
 .last-commit button {
   margin-right: 1rem;
 }

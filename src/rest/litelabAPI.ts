@@ -67,14 +67,14 @@ export function fetchDir(repo: string, branch: string, path: string) {
 }
 
 ////// Commits
-const mockCommit = (branch: string): Commit => Object.assign({
+const mockCommit = (branch: string): Commit => ({
   author: mockUser,
   content: "Some random change",
   timestamp: "1970-01-01T00:00:01",
   thread: [],
   tags: [],
   branch: { name: branch },
-  hash: shuffle("1234567890abcdef223344556677")
+  hash: shuffle("1234567890abcdef223344556677").join("")
 })
 
 

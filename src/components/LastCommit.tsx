@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useAppSelector } from '../hooks/redux';
 
 export function LastCommit() {
@@ -16,13 +16,18 @@ export function LastCommit() {
     }
 
     const user = lastCommit.author
+    const hash = lastCommit.hash
+
+    console.table(hash)
 
     return (
         <div className="last-commit">
             <div className="committer">
                 <img src={user.image.toString()}></img>
                 <div className="commit">
-                    <strong>{lastCommit.content}</strong>
+                    <Link to={`/${owner}/${repo}/commit/${lastCommit.hash}`}>
+                        <strong>{lastCommit.content}</strong>
+                    </Link>
                     <span>{user.name} ({lastCommit.timestamp})</span>
                 </div>
             </div>
