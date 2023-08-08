@@ -9,14 +9,7 @@ import * as _ from 'lodash'
 import { butlast } from './Breadcrumbs';
 
 const range = (from: number, to: number): number[] => {
-    let lp = (acc: number[], n: number): number[] => {
-        if (n >= to) {
-            return acc;
-        }
-        else {
-            return lp([...acc, n], n + 1)
-        }
-    }
+    let lp = (acc: number[], n: number): number[] => n >= to ? acc : lp([...acc, n], n+1)
     return lp([from], from+1)
 }
 
